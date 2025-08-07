@@ -1,4 +1,4 @@
-# Code for "Genearlized Regression Calibration"
+# Code for "Generalized Regression Calibration"
 
 This repository contains the code used for the simulation study in our paper:
 
