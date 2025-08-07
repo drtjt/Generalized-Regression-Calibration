@@ -14,14 +14,15 @@ This repository provides:
 ## 🛠️ Requirements
 The code was written in **R** and uses the following packages:
 - `MASS`
-- `nleqslv`
-- `mvtnorm`
+- `pbapply`
+- `pbapply`
 - `Rcpp`
 - `RcppArmadillo`
 - `stringr`
 - `numDeriv`
 - `cubature`
-- `survey` 
+- `survival`
+- `splines2`
 
 The **R** script calls **C++** files to execute our proposed estimation strategy.
 
