@@ -23,7 +23,7 @@ sourceCpp('Cpp_Functions.cpp')
 #
 # (8) Function to compute B(beta, gamma); Lin and Wei (1989)
 #
-# (9) Estimation Wrapper
+# (9) Estimation Wrapper: "Gen_RC"
 # ---------------------------------------------------------------------------
 
 
@@ -1176,32 +1176,32 @@ Stacked_Estimating_Functions_Modified = function(Beta_vec,
 #   "fit_EF": Output from "nleqslv::nleqslv" that solves the estimating equation for hazard parameter estimation
 
 
-EstimatingFunction_Wrapper = function(df1,
-                                      df2,
-                                      df3,
-                                      df1_ID_index = NA,
-                                      df1_U_index,
-                                      df1_delta_index,
-                                      df1_Q_index,
-                                      df1_X_index,
-                                      df2_ID_index = NA,
-                                      df2_Response_index,
-                                      df2_Covariates_index,
-                                      df3_ID_index = NA,
-                                      Function_Type = "Polynomial",
-                                      DF = 1,
-                                      Method = "Cox",
-                                      EstimateNuisance_Logi,
-                                      mu_vec = NULL,
-                                      Variance_vec = NULL,
-                                      t_grid,
-                                      z_grid,
-                                      C = 1000,
-                                      seed = 235346,
-                                      x = 0,
-                                      Spline_Z_vec = NULL,
-                                      Boundary.knots = NULL,
-                                      Estimate_CI_Surv = T){
+Gen_RC = function(df1,
+                  df2,
+                  df3,
+                  df1_ID_index = NA,
+                  df1_U_index,
+                  df1_delta_index,
+                  df1_Q_index,
+                  df1_X_index,
+                  df2_ID_index = NA,
+                  df2_Response_index,
+                  df2_Covariates_index,
+                  df3_ID_index = NA,
+                  Function_Type = "Polynomial",
+                  DF = 1,
+                  Method = "Cox",
+                  EstimateNuisance_Logi,
+                  mu_vec = NULL,
+                  Variance_vec = NULL,
+                  t_grid,
+                  z_grid,
+                  C = 1000,
+                  seed = 235346,
+                  x = 0,
+                  Spline_Z_vec = NULL,
+                  Boundary.knots = NULL,
+                  Estimate_CI_Surv = T){
   
   if (length(df1_ID_index) > 1) stop("'df1_ID_index' needs to be a scalar!")
   if (length(df1_U_index) > 1) stop("'df1_U_index' needs to be a scalar!")
@@ -1638,4 +1638,5 @@ EstimatingFunction_Wrapper = function(df1,
   
   return(val_list)
   
+
 }
