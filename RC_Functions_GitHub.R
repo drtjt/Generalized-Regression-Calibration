@@ -1124,7 +1124,7 @@ Stacked_Estimating_Functions_Modified = function(Beta_vec,
 
 
 # ---------------------------------------------------------------------------
-# (9) Estimation Wrapper
+# (9) Estimation Wrapper: "Gen_RC"
 # ---------------------------------------------------------------------------
 
 # Write a function that will estimate the parameters, estimate the variance,
@@ -1640,3 +1640,4 @@ Gen_RC = function(df1,
   
 
 }
+
