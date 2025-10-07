@@ -12,7 +12,6 @@
 
 rm(list =ls())
 set.seed(5347547)
-setwd("C:/Users/tthomson/Dropbox/Fred Hutchinson Cancer Centre_Work/R Code/Women's Health Initiative") # REMOVE
 
 library(MASS)
 library(pbapply)
@@ -308,4 +307,5 @@ Results_Polynomial_CRC = Gen_RC(df1 = df_1_OrderedQ,
                                 Spline_Z_vec = NULL,
                                 Boundary.knots = NULL,
                                 Estimate_CI_Surv = F) # Takes a few minutes
+
 
