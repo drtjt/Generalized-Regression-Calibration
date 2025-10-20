@@ -30,7 +30,7 @@ NL_RC(
   x = 0,
   Spline_Z_vec = NULL,
   Boundary.knots = NULL,
-  Estimate_CI_Surv = T
+  Estimate_CI_Surv = TRUE
 )
 }
 \arguments{
@@ -167,7 +167,7 @@ Results_Polynomial_LRC = NL_RC(df1 = df_Analysis,
                                Function_Type = "Polynomial",
                                DF = 1,
                                Method = "Linear",
-                               EstimateNuisance_Logi = T,
+                               EstimateNuisance_Logi = TRUE,
                                mu_vec = NULL,
                                Variance_vec = NULL,
                                t_grid = seq(0,20, length.out = 101),
@@ -177,7 +177,7 @@ Results_Polynomial_LRC = NL_RC(df1 = df_Analysis,
                                x = 0,
                                Spline_Z_vec = NULL,
                                Boundary.knots = NULL,
-                               Estimate_CI_Surv = F) # True beta: -0.2, True gamma: 0.1
+                               Estimate_CI_Surv = FALSE) # True beta: -0.2, True gamma: 0.1
 
 # ----------------------------------------------------------------------
 #         QUADRATIC REGRESSION CALIBRATION
@@ -198,7 +198,7 @@ Results_Polynomial_QRC = NL_RC(df1 = df_Analysis,
                                Function_Type = "Polynomial",
                                DF = 2,
                                Method = "Quadratic",
-                               EstimateNuisance_Logi = T,
+                               EstimateNuisance_Logi = TRUE,
                                mu_vec = NULL,
                                Variance_vec = NULL,
                                t_grid = seq(0,20, length.out = 101),
@@ -208,7 +208,7 @@ Results_Polynomial_QRC = NL_RC(df1 = df_Analysis,
                                x = 0,
                                Spline_Z_vec = NULL,
                                Boundary.knots = NULL,
-                               Estimate_CI_Surv = F)
+                               Estimate_CI_Surv = FALSE)
 
 # ----------------------------------------------------------------------
 #         CUBIC REGRESSION CALIBRATION
@@ -229,7 +229,7 @@ Results_Polynomial_CRC = NL_RC(df1 = df_Analysis,
                                Function_Type = "Polynomial",
                                DF = 3,
                                Method = "General_MC",
-                               EstimateNuisance_Logi = T,
+                               EstimateNuisance_Logi = TRUE,
                                mu_vec = NULL,
                                Variance_vec = NULL,
                                t_grid = seq(0,20, length.out = 101),
@@ -239,7 +239,7 @@ Results_Polynomial_CRC = NL_RC(df1 = df_Analysis,
                                x = 0,
                                Spline_Z_vec = NULL,
                                Boundary.knots = NULL,
-                               Estimate_CI_Surv = F) # Takes a few minutes
+                               Estimate_CI_Surv = FALSE) # Takes a few minutes
 }
 \references{
 Thomson, T.J. and Huang Y. (2025+). Estimating Non-linear Exposure and Event Time Association in the Presence of Exposure Measurement Error. \emph{Submitted}

@@ -38,6 +38,7 @@ True_SF_func = function(Times,
                         DF = 3,
                         Boundary.knots = NULL){
 
+  #require(splines2)
   if (length(Beta_vec) != DF) stop("'Beta_vec' needs to be the same as 'DF'!")
 
   if (Function_Type == "Polynomial"){

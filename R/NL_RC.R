@@ -117,7 +117,7 @@
 #'                                Function_Type = "Polynomial",
 #'                                DF = 1,
 #'                                Method = "Linear",
-#'                                EstimateNuisance_Logi = T,
+#'                                EstimateNuisance_Logi = TRUE,
 #'                                mu_vec = NULL,
 #'                                Variance_vec = NULL,
 #'                                t_grid = seq(0,20, length.out = 101),
@@ -127,7 +127,7 @@
 #'                                x = 0,
 #'                                Spline_Z_vec = NULL,
 #'                                Boundary.knots = NULL,
-#'                                Estimate_CI_Surv = F) # True beta: -0.2, True gamma: 0.1
+#'                                Estimate_CI_Surv = FALSE) # True beta: -0.2, True gamma: 0.1
 #'
 #' # ----------------------------------------------------------------------
 #' #         QUADRATIC REGRESSION CALIBRATION
@@ -148,7 +148,7 @@
 #'                                Function_Type = "Polynomial",
 #'                                DF = 2,
 #'                                Method = "Quadratic",
-#'                                EstimateNuisance_Logi = T,
+#'                                EstimateNuisance_Logi = TRUE,
 #'                                mu_vec = NULL,
 #'                                Variance_vec = NULL,
 #'                                t_grid = seq(0,20, length.out = 101),
@@ -158,7 +158,7 @@
 #'                                x = 0,
 #'                                Spline_Z_vec = NULL,
 #'                                Boundary.knots = NULL,
-#'                                Estimate_CI_Surv = F)
+#'                                Estimate_CI_Surv = FALSE)
 #'
 #' # ----------------------------------------------------------------------
 #' #         CUBIC REGRESSION CALIBRATION
@@ -179,7 +179,7 @@
 #'                                Function_Type = "Polynomial",
 #'                                DF = 3,
 #'                                Method = "General_MC",
-#'                                EstimateNuisance_Logi = T,
+#'                                EstimateNuisance_Logi = TRUE,
 #'                                mu_vec = NULL,
 #'                                Variance_vec = NULL,
 #'                                t_grid = seq(0,20, length.out = 101),
@@ -189,7 +189,7 @@
 #'                                x = 0,
 #'                                Spline_Z_vec = NULL,
 #'                                Boundary.knots = NULL,
-#'                                Estimate_CI_Surv = F) # Takes a few minutes
+#'                                Estimate_CI_Surv = FALSE) # Takes a few minutes
 
 NL_RC = function(df1,
                  df2,
@@ -216,7 +216,7 @@ NL_RC = function(df1,
                  x = 0,
                  Spline_Z_vec = NULL,
                  Boundary.knots = NULL,
-                 Estimate_CI_Surv = T){
+                 Estimate_CI_Surv = TRUE){
 
   if (length(df1_ID_index) > 1) stop("'df1_ID_index' needs to be a scalar!")
   if (length(df1_U_index) > 1) stop("'df1_U_index' needs to be a scalar!")
@@ -260,8 +260,8 @@ NL_RC = function(df1,
     colnames(df2_use)[1] = "W1"
 
     #   fit a linear regression model
-    fit_lm = lm(W1 ~ .,
-                data = df2_use)
+    fit_lm = stats::lm(W1 ~ .,
+                       data = df2_use)
 
     # Write estimating functions for the regression parameters
     Nuisance_Regression_Parameter_EF_func = function(alpha_vec,
@@ -341,8 +341,8 @@ NL_RC = function(df1,
     if (length(fit_lm$coefficients)-1 != dim(df1_match)[2]) stop("Variables in 'df1' and 'df2' do not match...")
 
     # Define "mu_vec" and "Variance_vec"
-    mu_vec = as.numeric(predict(fit_lm,
-                                newdata = df1_match))
+    mu_vec = as.numeric(stats::predict.lm(fit_lm,
+                                          newdata = df1_match))
     Variance_vec = rep(summary(fit_lm)$sigma^2 - sigma2_ehat, dim(df1)[1])
 
   }
@@ -503,7 +503,7 @@ NL_RC = function(df1,
     Var_Betahat_QuadraticRC[,2] = Est_C[,2] / (1 + 2*Est_C[,2] * sigma2)
 
     # Update "Covariance_mat"
-    Covariance_mat = var(Var_Betahat_QuadraticRC)
+    Covariance_mat = stats::var(Var_Betahat_QuadraticRC)
   }
 
   # Obtain (baseline) survival predictions
@@ -623,7 +623,7 @@ NL_RC = function(df1,
       UL_LL.z = sapply(1:dim(SurvProbs.z_mat)[2],
                        function(tt){
                          data.tt = SurvProbs.z_mat[,tt]
-                         val = as.numeric(quantile(data.tt, probs = c(0.025, 0.975)))
+                         val = as.numeric(stats::quantile(data.tt, probs = c(0.025, 0.975)))
                          return(val)
                        })
       rownames(UL_LL.z) = c("2.5%", "97.5%")
@@ -633,7 +633,7 @@ NL_RC = function(df1,
       Var.z = sapply(1:dim(SurvProbs.z_mat)[2],
                      function(tt){
                        data.tt = SurvProbs.z_mat[,tt]
-                       val = as.numeric(var(data.tt))
+                       val = as.numeric(stats::var(data.tt))
                        return(val)
                      })
 

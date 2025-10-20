@@ -105,7 +105,7 @@ Baseline_Hazard_GRC_func = function(Beta_vec,
                              Denominator = S0)
 
   # Take the cumulative sum of the numerator by "data_Baseline$time"
-  data_Baseline$Numerator = ave(data_Baseline$Numerator, data_Baseline$time, FUN=cumsum)
+  data_Baseline$Numerator = stats::ave(data_Baseline$Numerator, data_Baseline$time, FUN=cumsum)
 
   # Retain the indices where the difference in the numerator isn't 1
   data_Baseline = data_Baseline[c(which(diff(data_Baseline$Numerator)!= 1), dim(data_Baseline)[1]),]

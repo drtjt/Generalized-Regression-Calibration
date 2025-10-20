@@ -34,6 +34,7 @@ H_partialH_func = function(Method,
                            C,
                            Boundary.knots = NULL){
 
+  #require(splines2)
   Q_vec = data$Q
   if (any(is.null(Boundary.knots))){
     Boundary.knots = range(Q_vec)
@@ -176,43 +177,86 @@ H_partialH_func = function(Method,
       spline_data = splines2::bernsteinPoly(data$mu,
                                             degree = DF,
                                             Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline1_data = splines2::bernsteinPoly(data$mu,
+                                             degree = DF,
+                                             Boundary.knots = Boundary.knots,
+                                             derivs = 1)
+      spline2_data = splines2::bernsteinPoly(data$mu,
+                                             degree = DF,
+                                             Boundary.knots = Boundary.knots,
+                                             derivs = 2)
     }
     if (Function_Type == "B-Spline"){
       spline_data = splines2::bSpline(data$mu,
                                       df = DF,
                                       Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline1_data = splines2::bSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 1)
+      spline2_data = splines2::bSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 2)
     }
     if (Function_Type == "C-Spline"){
       spline_data = splines2::cSpline(data$mu,
                                       df = DF,
                                       Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline_data = splines2::cSpline(data$mu,
+                                      df = DF,
+                                      Boundary.knots = Boundary.knots)
     }
     if (Function_Type == "I-Spline"){
       spline_data = splines2::iSpline(data$mu,
                                       df = DF,
                                       Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline1_data = splines2::iSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 1)
+      spline2_data = splines2::iSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 2)
     }
     if (Function_Type == "M-Spline"){
       spline_data = splines2::mSpline(data$mu,
                                       df = DF,
                                       Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline1_data = splines2::mSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 1)
+      spline2_data = splines2::mSpline(data$mu,
+                                       df = DF,
+                                       Boundary.knots = Boundary.knots,
+                                       derivs = 2)
     }
     if (Function_Type == "NC-Spline"){
       spline_data = splines2::naturalSpline(data$mu,
                                             df = DF,
                                             Boundary.knots = Boundary.knots)
-      spline1_data = splines2::deriv(spline_data, derivs = 1)
-      spline2_data = splines2::deriv(spline_data, derivs = 2)
+      # spline1_data = splines2::deriv(spline_data, derivs = 1)
+      # spline2_data = splines2::deriv(spline_data, derivs = 2)
+      spline1_data = splines2::naturalSpline(data$mu,
+                                             df = DF,
+                                             Boundary.knots = Boundary.knots,
+                                             derivs = 1)
+      spline2_data = splines2::naturalSpline(data$mu,
+                                             df = DF,
+                                             Boundary.knots = Boundary.knots,
+                                             derivs = 2)
     }
 
     # Initialize matrices
@@ -244,9 +288,9 @@ H_partialH_func = function(Method,
     for (mc in 1:C){
 
       # Generate iid N(mu, sigma2) random variables
-      Z_mc_vec = rnorm(dim(data)[1],
-                       mean = data$mu,
-                       sd = sqrt(data$sigma2))
+      Z_mc_vec = stats::rnorm(dim(data)[1],
+                              mean = data$mu,
+                              sd = sqrt(data$sigma2))
 
       # Initialize matrices
       g_mc_mat = matrix(NA, nrow = dim(data)[1], ncol = DF) # Initialize
