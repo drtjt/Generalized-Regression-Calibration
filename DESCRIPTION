@@ -1,0 +1,26 @@
+Package: NonLinearRC
+Title: Nonlinear Regression Calibration under a Cox Regression Model
+Version: 0.0.0.9000
+Authors@R: 
+    person("Trevor", "Thomson", , "tthomson@fredhutch.com", role = c("aut", "cre"))
+Description: Apply regression calibration to estimate parameters in a Cox regression model when the exposure variable is measured with error, and can have a nonlinear effect on the hazard function.
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    MASS,
+    nleqslv,
+    Rcpp,
+    RcppArmadillo,
+    splines2,
+    stringr,
+    survival
+Depends: 
+    R (>= 2.10)
+LazyData: true
+LinkingTo: 
+    Rcpp
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
