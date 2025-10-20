@@ -1,6 +1,6 @@
 # NonLinearRC
 
-This repository contains files for our R package "NonLinearRC", which estimates parameters in a Cox regression where the exposure variable is subject to measurement error and potentially has a nonlinear relationship on the hazard function.
+This repository contains files for our R package "NonLinearRC", which applies regression calibration to estimate parameters in a Cox regression model when the exposure variable is measured with error, and has a nonlinear effect on the hazard function
 
 > **Estimating Non-Linear Exposure and Event Time Assocication in the Presence of Exposure Measurement Error**  
 > Authors: Trevor J Thomson, and Ying Huang
