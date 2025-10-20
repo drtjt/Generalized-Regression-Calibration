@@ -24,7 +24,7 @@ The code was written in **R** and uses the following packages:
 - `survival`
 - `splines2`
 
-The **R** script calls **C++** files to execute our proposed estimation strategy.
+See "SimulateDataset_Examples_GitHub.R" for an illustration of the package.
 
 ## 📧 Contact
 For questions, feedback, or collaboration inquiries, feel free to reach out to:
