@@ -1,6 +1,6 @@
-# Code for "Generalized Regression Calibration"
+# NonLinearRC
 
-This repository contains the code used for the simulation study in our paper:
+This repository contains files for our R package "NonLinearRC", which estimates parameters in a Cox regression where the exposure variable is subject to measurement error and potentially has a nonlinear relationship on the hazard function.
 
 > **Estimating Non-Linear Exposure and Event Time Assocication in the Presence of Exposure Measurement Error**  
 > Authors: Trevor J Thomson, and Ying Huang
