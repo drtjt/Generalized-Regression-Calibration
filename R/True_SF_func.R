@@ -73,8 +73,8 @@ True_SF_func = function(Times,
                                             df = DF,
                                             Boundary.knots = Boundary.knots)
     }
-    pred.Z = suppressWarnings(as.numeric(predict(spline_data,
-                                                 newx = Z)))
+    pred.Z = suppressWarnings(as.numeric(stats::predict(spline_data,
+                                                        newx = Z)))
   }
   Lambda_t = Lambda_0t * exp( as.numeric(pred.Z %*% Beta_vec) +
                                 as.numeric(t(X) %*% gamma_vec) )

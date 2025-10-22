@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Trevor", "Thomson", , "tthomson@fredhutch.org", role = c("aut", "cre"))
 Description: Apply regression calibration to estimate parameters in a Cox regression model when the exposure variable is measured with error, and can have a nonlinear effect on the hazard function.
-License: `use_mit_license()`
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
